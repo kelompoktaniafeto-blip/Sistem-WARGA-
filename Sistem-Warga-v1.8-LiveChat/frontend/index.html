@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#12335b"><meta name="description" content="Sistem Informasi WARGA untuk pelayanan desa">
+<link rel="manifest" href="/manifest.json"><link rel="icon" href="/icons/icon-192.png"><link rel="stylesheet" href="/css/app.css">
+<title>WARGA — Sistem Informasi Desa</title>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar" id="sidebar">
+  <div class="brand"><div class="logo">W</div><div><b>WARGA</b><small>Sistem Informasi Desa</small></div></div>
+  <nav>
+    <a class="active">⌂ <span>Dashboard</span></a><a>♙ <span>Data Warga</span></a><a>▣ <span>Pengajuan Surat</span></a><a>◷ <span>Status Dokumen</span></a><a>🔔 <span>Notifikasi</span></a><a>📍 <span>Peta & GPS</span></a><a>📷 <span>Kontrol Kamera</span></a><a id="chatMenu">💬 <span>Live Chat</span></a><a>⚙ <span>Pengaturan</span></a>
+  </nav>
+  <div class="side-footer">Sistem Informasi Desa<br><span>Offline-ready • v1.8</span></div>
+</aside>
+<div class="backdrop" id="backdrop"></div>
+<main>
+<header><button class="menu" id="menu">☰</button><div><span class="eyebrow">SISTEM INFORMASI DESA</span><h1>Dashboard</h1></div><div class="header-actions"><button class="install" id="installBtn" hidden>＋ Pasang Aplikasi</button><div class="profile"><span class="avatar">SA</span><div><b>Super Admin</b><small>Administrator</small></div></div></div></header>
+<section class="hero"><div><span class="pill">● Sistem aktif</span><h2>Selamat datang di WARGA</h2><p>Gunakan sistem yang sama dari Android maupun PC/laptop.</p></div><button class="primary" id="openChat">💬 Bantuan Live Chat</button></section>
+<section class="stats"><article><span>👥</span><small>Total Warga</small><strong id="warga">—</strong><em>Database kependudukan</em></article><article><span>📄</span><small>Pengajuan</small><strong id="pengajuan">—</strong><em>Seluruh status</em></article><article><span>🔐</span><small>Pengguna</small><strong id="users">—</strong><em>Semua akun</em></article><article><span>☁</span><small>Koneksi</small><strong id="sync">Online</strong><em id="syncText">Siap sinkronisasi</em></article></section>
+<section class="grid"><article class="card"><div class="card-head"><div><span class="eyebrow">AKTIVITAS</span><h3>Alur pelayanan</h3></div><span class="badge">Real-time</span></div><div class="timeline"><div><i>1</i><div><b>Warga mengajukan</b><p>Form dan dokumen persyaratan dikirim.</p></div></div><div><i>2</i><div><b>Super Admin memverifikasi</b><p>Berkas lengkap diteruskan ke Kepala Desa.</p></div></div><div><i>3</i><div><b>Kepala Desa menyetujui</b><p>Dokumen siap ditandatangani dan diterbitkan.</p></div></div><div><i>4</i><div><b>Terbit & arsip</b><p>Nomor surat dan QR verifikasi dibuat.</p></div></div></div></article>
+<article class="card"><div class="card-head"><div><span class="eyebrow">AKSES CEPAT</span><h3>Modul sistem</h3></div></div><div class="features"><button><b>👤</b><span>Manajemen Warga<small>NIK, KK & profil</small></span></button><button><b>📝</b><span>Surat Digital<small>Pengajuan & verifikasi</small></span></button><button><b>📍</b><span>Peta Desa<small>GPS & lokasi</small></span></button><button id="cameraQuick"><b>📷</b><span>Kontrol Kamera<small>Monitoring perangkat</small></span></button></div></article></section>
+<section class="card chat-summary"><div><span class="eyebrow">PELAYANAN DIGITAL</span><h3>Live Chat & Video Call</h3><p>Sistem memberikan jawaban otomatis untuk pertanyaan umum. Jika membutuhkan petugas, warga dapat masuk ke antrean <b>Live Chat Admin</b> atau <b>Video Call Super Admin</b>.</p></div><div class="chat-actions"><button class="secondary" id="openChat2">💬 Buka Live Chat</button><button class="primary-dark" id="openVideo">🎥 Video Call Super Admin</button></div></section>
+<section class="card queue-card"><div class="card-head"><div><span class="eyebrow">MONITORING SUPER ADMIN</span><h3>Daftar Antrian Layanan</h3></div><button class="refresh" id="refreshQueue">↻ Segarkan</button></div><div id="queueList" class="queue-list"><div class="empty">Memuat antrean…</div></div></section>
+<section class="card install-card"><div><span class="eyebrow">SATU APLIKASI</span><h3>Android • PC • Laptop</h3><p>Di Android gunakan Chrome/Edge → menu browser → <b>Instal aplikasi</b>. Di Windows gunakan Chrome/Edge → ikon instal di address bar.</p></div><div class="device-badges"><span>📱 Android</span><span>💻 Windows</span><span>🌐 PWA</span></div></section>
+<div id="toast"></div>
+</main></div>
+
+<div class="modal" id="chatModal" aria-hidden="true"><div class="modal-box chat-box"><div class="modal-head"><div><span class="eyebrow">LAYANAN DIGITAL</span><h2>Live Chat WARGA</h2></div><button class="close" data-close="chatModal">×</button></div><div class="chat-choice"><button class="choice active" data-channel="chat"><b>💬 Live Chat Admin</b><small>Masuk antrean chat dan dapat jawaban otomatis.</small></button><button class="choice" data-channel="video"><b>🎥 Video Call Super Admin</b><small>Masuk antrean panggilan video langsung.</small></button></div><div class="chat-body"><div class="messages" id="messages"><div class="system-msg">Halo! Saya asisten Sistem WARGA. Silakan tanyakan informasi umum. Untuk bantuan petugas, pilih layanan di atas.</div></div><div class="chat-compose"><input id="chatInput" placeholder="Ketik pertanyaan Anda…"><button id="sendChat">Kirim</button></div></div><div class="queue-now" id="queueNow">Belum masuk antrean.</div><div class="modal-actions"><button class="secondary" id="joinQueue">Masuk Antrean Admin</button><button class="primary-dark" id="startVideo">Masuk Antrean Video Call</button></div></div></div>
+
+<script src="/js/app.js"></script>
+</body></html>
